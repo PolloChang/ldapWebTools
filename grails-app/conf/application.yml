@@ -2,7 +2,7 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: ldapwebtools
+        defaultPackage: nodebbldap
     gorm:
         reactor:
             # Whether to translate GORM events into Reactor events
@@ -141,3 +141,27 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+---
+
+environments:
+    development:
+        apache:
+            directory:
+                ldap:
+                    hostname: 192.168.56.12
+                    port: 10389
+                    adminDn: "uid=admin,ou=system"
+                    adminPassword: secret
+                    baseDN: "dc=nodebb,dc=pollochang,dc=com"
+                    peopleDN: "ou=people,dc=nodebb,dc=pollochang,dc=com"
+    test:
+        apache:
+            directory:
+                ldap:
+                    hostname: 127.0.0.1
+                    port: 10389
+                    adminDn: "uid=admin,ou=system"
+                    adminPassword: secret
+                    baseDN: "dc=nodebb,dc=wezoomtek,dc=com"
+                    peopleDN: "ou=people,dc=nodebb,dc=wezoomtek,dc=com"

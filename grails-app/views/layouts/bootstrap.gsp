@@ -34,13 +34,24 @@
         -webkit-overflow-scrolling: touch;
         }
     </style>
-</head>
+    <script type="text/javascript">
 
+        //設定 sidebar 選擇項目
+        jQuery(function(){
+            jQuery("#nav-i a").attr('class','nav-link link-dark');
+            jQuery("#${controllerName}-${actionName}").attr('class','nav-link active');
+        });
+    </script>
     <g:layoutHead/>
 </head>
 
 <body>
-
+<%
+    List menuL = [
+            [id:"home",menuTitle:"${message(code: "default.home.label")}",controller:"manage",action:"index",iconHref:"svg/home.svg"],
+            [id:"tools",menuTitle:"${message(code: "default.admin.label")}",controller:"manage",action:"admin",iconHref:"svg/tools.svg"],
+    ]
+%>
 <main class="d-flex flex-nowrap">
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
         <a href="${createLink(controller: "manage" ,action: "index")}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -49,18 +60,14 @@
         </a>
         <hr>
         <ul id="nav-i" class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a id="home" href="${createLink(controller: "manage" ,action: "index")}" class="nav-link active" aria-current="page">
-                    <asset:image src="svg/home.svg" alt="home"/>
-                    ${message(code: "default.home.label")}
-                </a>
-            </li>
-            <li>
-                <a id="tools" href="${createLink(controller: "manage",action: "admin")}" class="nav-link link-dark">
-                    <asset:image src="svg/tools.svg" alt="tools"/>
-                    ${message(code: "default.admin.label")}
-                </a>
-            </li>
+            <g:each in="${menuL}" var="menI">
+                <li class="nav-item">
+                    <a id="${menI.controller}-${menI.action}" href="${createLink(controller: menI.controller ,action: menI.action)}" class="nav-link" aria-current="page">
+                        <asset:image src="${menI.iconHref}" alt="${menI.controller}-${menI.action}"/>
+                        ${menI.menuTitle}
+                    </a>
+                </li>
+            </g:each>
         </ul>
         <hr>
         <div class="dropdown">

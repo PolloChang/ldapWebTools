@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
 
-    List<Menu> menuL = []
+    LinkedList<Menu> menuL = []
     Menu menu
     menu = new Menu()
     menu.menuTitle = "${message(code: "default.home.label")}"
@@ -25,9 +25,16 @@
 
     menu = new Menu()
     menu.menuTitle = "${message(code: "default.admin.label")}"
-    menu.controllerName = "base"
+    menu.controllerName = "manage"
     menu.actionName = "admin"
     menu.iconHref = "svg/tools.svg"
+    menuL << menu
+
+    menu = new Menu()
+    menu.menuTitle = "系統資訊"
+    menu.controllerName = "base"
+    menu.actionName = "systemInfo"
+    menu.iconHref = "svg/info.svg"
     menuL << menu
 
 %>
@@ -111,7 +118,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        ${menuL.find{menuI -> menuI.actionName == actionName;menuI.controllerName == controllerName}.getMenuTitle()}
+                        ${menuL.findAll(){menuI -> menuI.controllerName == controllerName}.find {menuI -> menuI.actionName == actionName}.menuTitle}
                     </li>
                 </ol>
             </nav>

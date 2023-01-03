@@ -78,7 +78,7 @@
     class="
     navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-03
 ">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="${createLink(controller: "manage" ,action: "index")}">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="${createLink(controller: "base" ,action: "index")}">
         <asset:image src="svg/ldap.svg" alt="home" width="40" height="32"/>
         <span class="fs-6">${message(code: "base.app.label")}</span>
     </a>

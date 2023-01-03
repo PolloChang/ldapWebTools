@@ -33,7 +33,7 @@
     menu = new Menu()
     menu.menuTitle = "系統資訊"
     menu.controllerName = "base"
-    menu.actionName = "systemInfo"
+    menu.actionName = "about"
     menu.iconHref = "svg/info.svg"
     menuL << menu
 
@@ -50,10 +50,6 @@
     <asset:stylesheet src="sidebars.css"/>
     <asset:javascript src="sidebars.js"/>
     <style>
-        .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-        }
 
         .nav-scroller .nav {
         display: flex;
@@ -114,18 +110,25 @@
                 </ul>
             </div>
         </nav>
-        <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        ${menuL.findAll(){menuI -> menuI.controllerName == controllerName}.find {menuI -> menuI.actionName == actionName}.menuTitle}
-                    </li>
-                </ol>
-            </nav>
-            <div>
-                <g:layoutBody/>
+        <div class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                ${menuL.findAll(){menuI -> menuI.controllerName == controllerName}.find {menuI -> menuI.actionName == actionName}.menuTitle}
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
-        </main>
+            <div class="row">
+                <main class="col overflow-auto">
+                    <g:layoutBody/>
+                </main>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>

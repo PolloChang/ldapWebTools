@@ -4,7 +4,7 @@ class BaseController {
 
     def index() { }
 
-    def systemInfo(){
+    def about(){
 
     }
 }

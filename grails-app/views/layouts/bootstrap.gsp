@@ -111,6 +111,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
+                        ${menuL.find{menuI -> menuI.actionName == actionName;menuI.controllerName == controllerName}.getMenuTitle()}
                     </li>
                 </ol>
             </nav>
@@ -120,25 +121,5 @@
         </main>
     </div>
 </div>
-%{--<main class="d-flex flex-nowrap">--}%
-%{--    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">--}%
-
-%{--        <hr>--}%
-%{--        <div class="dropdown">--}%
-%{--            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">--}%
-%{--                <img src="${assetPath(src: "svg/grails.svg")}" alt="" width="32" height="32" class="rounded-circle me-2">--}%
-%{--                <strong>mdo</strong>--}%
-%{--            </a>--}%
-%{--            <ul class="dropdown-menu text-small shadow">--}%
-%{--                <li><a class="dropdown-item" href="${createLink(controller: "manage",action: "admin")}">${message(code: "default.admin.label")}</a></li>--}%
-%{--                <li><hr class="dropdown-divider"></li>--}%
-%{--                <li><a class="dropdown-item" href="#">About</a></li>--}%
-%{--            </ul>--}%
-%{--        </div>--}%
-%{--    </div>--}%
-%{--    <div class="" style="">--}%
-%{--    <g:layoutBody/>--}%
-%{--    </div>--}%
-%{--</main>--}%
 </body>
 </html>

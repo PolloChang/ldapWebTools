@@ -4,14 +4,32 @@
   Date: 12/16/22
   Time: 12:19 PM
 --%>
-
+<%@ page import="base.*" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
-    List menuL = [
-            [menuTitle:"${message(code: "default.home.label")}",controller:"base",action:"index",iconHref:"svg/home.svg"],
-            [menuTitle:"Ldap帳號註冊",controller:"manage",action:"index"],
-            [menuTitle:"${message(code: "default.admin.label")}",controller:"manage",action:"admin",iconHref:"svg/tools.svg"],
-    ]
+
+    List<Menu> menuL = []
+    Menu menu
+    menu = new Menu()
+    menu.menuTitle = "${message(code: "default.home.label")}"
+    menu.controllerName = "base"
+    menu.actionName = "index"
+    menu.iconHref = "svg/home.svg"
+    menuL << menu
+
+    menu = new Menu()
+    menu.menuTitle = "Ldap帳號註冊"
+    menu.controllerName = "manage"
+    menu.actionName = "index"
+    menuL << menu
+
+    menu = new Menu()
+    menu.menuTitle = "${message(code: "default.admin.label")}"
+    menu.controllerName = "base"
+    menu.actionName = "admin"
+    menu.iconHref = "svg/tools.svg"
+    menuL << menu
+
 %>
 <html>
 <head>
@@ -75,12 +93,12 @@
                 <ul id="nav-i" class="nav  flex-column ">
                     <g:each in="${menuL}" var="menI">
                         <li class="nav-item">
-                            <a id="${menI.controller}-${menI.action}" href="${createLink(controller: menI.controller ,action: menI.action)}" class="nav-link" aria-current="page">
+                            <a id="${menI.controllerName}-${menI.actionName}" href="${createLink(controller: menI.controllerName ,action: menI.actionName)}" class="nav-link" aria-current="page">
                                 <g:if test="${menI.iconHref}">
-                                    <asset:image src="${menI.iconHref}" alt="${menI.controller}-${menI.action}"/>
+                                    <asset:image src="${menI.iconHref}" alt="${menI.controllerName}-${menI.actionName}"/>
                                 </g:if>
                                 <g:else>
-                                    <asset:image src="svg/default.svg" alt="${menI.controller}-${menI.action}"/>
+                                    <asset:image src="svg/default.svg" alt="${menI.controllerName}-${menI.actionName}"/>
                                 </g:else>
                                 ${menI.menuTitle}
                             </a>
